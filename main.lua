@@ -2,6 +2,7 @@
 class = require "30log"
 require "play"
 require "test"
+require "image_manager"
 
 function love.load()
 	if enableTesting then runTests(); end
