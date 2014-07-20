@@ -1,8 +1,10 @@
 
 class = require "30log"
+
+require "entity"
+require "image_manager"
 require "play"
 require "test"
-require "image_manager"
 
 function love.load()
 	if enableTesting then runTests(); end
@@ -10,10 +12,16 @@ function love.load()
 	state = play
 end
 
+function love.update(dt)
+	assert(state)
+	for _, v in pairs(state.entities) do
+		v:update(dt)
+	end
+end
+
 function love.draw()
 	assert(state)
 	for _, v in pairs(state.entities) do
-		assert(v)
 		v:draw()
 	end
 end

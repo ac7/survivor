@@ -10,12 +10,12 @@ function runTests()
 			assert(type(v) == "function", "Global variable prefixed with test is not a function.")
 			local status, msg = pcall(v)
 			if not status then
-				error(k .. " FAIL: ", msg)
+				error(("\n%s FAIL: %s"):format(k, msg))
 			else
-				print(k .. "\tOK")
+				print(("%-30s OK"):format(k))
 			end
 		end
 	end
-	print("Testing: " .. count .. " tests passed.")
+	print("Testing: All " .. count .. " tests passed.")
 end
 
