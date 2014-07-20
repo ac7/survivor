@@ -1,8 +1,7 @@
 
-imageManager = {}
-imageManager.images = {}
+local self = {images = {}}
 
-function imageManager:get(name)
+function image(name)
 	assert(type(name) == "string")
 	if self.images[name] then
 		return self.images[name]
@@ -12,7 +11,7 @@ function imageManager:get(name)
 	end
 end
 
-function imageManager:release(name)
+function imageRelease(name)
 	assert(type(name) == "string")
 	assert(self.images[name] ~= nil)
 	self.images[name] = nil
