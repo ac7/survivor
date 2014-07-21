@@ -4,11 +4,16 @@ Entity = class{
 	y = 0,
 	angle = 0,
 	speed = 1,
+	img = nil,
+	originX = 0,
+	originY = 0,
 }
 
-function Entity:__init(x, y)
+function Entity:__init(img, x, y)
+	assert(img)
 	assert(type(x) == "number")
 	assert(type(y) == "number")
+	self.img = img
 	self.x = x
 	self.y = y
 end
@@ -19,10 +24,11 @@ function Entity:update(dt)
 end
 
 function Entity:draw()
+	love.graphics.draw(self.img, self.x, self.y, 1, 1, self.originX, self.originY)
 end
 
 function testEntityMovement()
-	local e = Entity(1, 0)
+	local e = Entity({}, 1, 0)
 	assert(type(e.update) == "function", "Entity doesn't have an update method")
 
 	e.angle = 0
