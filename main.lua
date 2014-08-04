@@ -26,3 +26,10 @@ function love.draw()
 	end
 end
 
+function love.keyreleased(key, unicode)
+	if key == "return" then
+		-- toggle fullscreen
+		love.window.setFullscreen(not love.window.getFullscreen())
+	end
+end
+
