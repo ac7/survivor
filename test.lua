@@ -1,6 +1,4 @@
 
-enableTesting = true
-
 function runTests()
 	local count = 0
 	print("Testing: Running test cases")

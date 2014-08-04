@@ -9,5 +9,9 @@ function love.conf(t)
 
 	t.modules.physics = false
 	t.modules.joystick = false
+
+	-- Enable/disable custom test system
+	-- If enabled, run unit tests before every launch of the game
+	enableTesting = true
 end
 
