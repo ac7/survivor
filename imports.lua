@@ -22,5 +22,8 @@ require "play"
 require "entity"
 require "desmond"
 
-require "test"
+if enableTesting then
+	require "test"
+	runTests();
+end
 

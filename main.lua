@@ -1,10 +1,8 @@
 
-require "imports"
-
 local desmond
 
 function love.load()
-	if enableTesting then runTests(); end
+	require "imports"
 
 	desmond = Desmond:new({}, 0, 0)
 	state = play
