@@ -1,11 +1,5 @@
 
-class = require "30log"
-
-require "entity"
-require "image_manager"
-require "play"
-require "desmond"
-require "test"
+require "imports"
 
 local desmond
 
