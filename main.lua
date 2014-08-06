@@ -1,6 +1,4 @@
 
-local desmond
-
 function love.load()
 	require "imports"
 
