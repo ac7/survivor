@@ -2,8 +2,6 @@
 function love.load()
 	require "imports"
 
-	love.graphics.setBackgroundColor(32, 0, 0)
-
 	desmond = Desmond:new(play, {}, 32, 72)
 	table.insert(play.entities, desmond)
 	setState(play)
