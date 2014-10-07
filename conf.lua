@@ -15,8 +15,13 @@ function love.conf(t)
 	enableTesting = true
 
 	-- Testing can be overridden by passing a "--test" parameter to the
-	-- executable. If this parameter is present, we run the tests and
+	-- executable. Example (in the project root):
+	--
+	-- 	love . --test
+	--
+	-- If the "--test" parameter is present, we run the tests and
 	-- immediately exit.
+	--
 	for _, a in pairs(arg) do
 		if a == "--test" then
 			enableTesting = true
