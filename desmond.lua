@@ -10,10 +10,10 @@ end
 function Desmond:update(dt)
 	local movX, movY = 0, 0
 
-	if love.keyboard.isDown("down") then movY = 1; end
-	if love.keyboard.isDown("right") then movX = 1; end
-	if love.keyboard.isDown("left") then movX = -1; end
-	if love.keyboard.isDown("up") then movY = -1; end
+	if love.keyboard.isDown("w") then movY = -1; end
+	if love.keyboard.isDown("a") then movX = -1; end
+	if love.keyboard.isDown("s") then movY = 1; end
+	if love.keyboard.isDown("d") then movX = 1; end
 
 	if movX ~= 0 or movY ~= 0 then
 		self.speed = 200
