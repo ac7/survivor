@@ -16,6 +16,7 @@ class = require "30log"
 
 -- yeah, we're polluting the _G namespace like you've never seen before.
 require "image_manager"
+require "state"
 require "play"
 
 -- we have to make sure to import subclasses after the original class
@@ -23,6 +24,7 @@ require "entity"
 require "desmond"
 
 if enableTesting then
+	require "entity_test"
 	require "test"
 	runTests()
 end

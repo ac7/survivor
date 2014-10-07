@@ -20,6 +20,8 @@ function love.conf(t)
 	for _, a in pairs(arg) do
 		if a == "--test" then
 			enableTesting = true
+			-- if enableTesting is true, then importing `imports`
+			-- will be enough to trigger the test cases
 			require "imports"
 			os.exit(0)
 		end
