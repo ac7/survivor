@@ -1,23 +1,34 @@
 
+-- Entity is the baseclass of everything that can appear on the screen.
 Entity = class{
+	-- When update is called, `x` and `y` will be moved in the direction of
+	-- `angle` at `speed`.
 	x = 0,
 	y = 0,
-	angle = 0,
-	speed = 0,
+	angle = 0, -- All angles are in radians.
+	speed = 0, -- Speed is measured in pixels-per-second.
+
+	-- Image-related variables. The origin- variables can be set to draw the
+	-- `img` centered on the x and y coordinates.
 	img = nil,
 	originX = 0,
 	originY = 0,
+
+	-- Container should be a `state` (for instance, `play`). Used for camera
+	-- offset and information about other entities in the state.
 	container = nil,
 }
 
+-- As stated in the class definition above, `container` should be a state. X and
+-- Y are the inital coordinates of the Entity and are optional parameters.
 function Entity:__init(container, img, x, y)
 	assert(img)
 	self.img = img
 
-	assert(type(x) == "number")
-	assert(type(y) == "number")
-	self.x = x
-	self.y = y
+	self.x = x or 0
+	self.y = y or 0
+	assert(type(self.x) == "number")
+	assert(type(self.y) == "number")
 
 	assert(type(container) == "table")
 	assert(type(container.cameraX) == "number")

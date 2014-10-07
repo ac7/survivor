@@ -1,4 +1,10 @@
 
+function testEntityDefaultXY()
+	local e = Entity({cameraX=2, cameraY=-4}, {})
+	assert(e.x == 0)
+	assert(e.y == 0)
+end
+
 function testEntityGetScreenPosition()
 	local e = Entity({cameraX=2, cameraY=-4}, {}, 1, 0)
 	local drawX, drawY = e:getScreenPosition()
