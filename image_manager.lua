@@ -1,19 +1,29 @@
 
-local self = {images = {}}
+local images = {}
 
 function image(name)
 	assert(type(name) == "string")
-	if self.images[name] then
-		return self.images[name]
+	if images[name] then
+		return images[name]
 	else
-		self.images[name] = love.graphics.newImage("data/" .. name)
-		return self:get(name)
+		images[name] = love.graphics.newImage("data/" .. name)
+		return images[name]
 	end
 end
 
 function imageRelease(name)
 	assert(type(name) == "string")
-	assert(self.images[name] ~= nil)
-	self.images[name] = nil
+	assert(images[name] ~= nil)
+	images[name] = nil
+end
+
+function testImageManager()
+	local mockObject = {"good morning"}
+	images["hello"] = mockObject
+	assert(image("hello") == mockObject)
+
+	-- assert that imageRelease actually removes the image
+	imageRelease("hello")
+	assert(images["hello"] == nil)
 end
 
