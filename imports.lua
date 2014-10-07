@@ -24,6 +24,6 @@ require "desmond"
 
 if enableTesting then
 	require "test"
-	runTests();
+	runTests()
 end
 
