@@ -25,6 +25,7 @@ require "desmond"
 
 if enableTesting then
 	require "entity_test"
+	require "desmond_test"
 	require "test"
 	runTests()
 end
