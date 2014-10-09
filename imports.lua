@@ -14,12 +14,11 @@ have already imported this file.
 -- keyword. All the modules in the program assume they can use `class`.
 class = require "30log"
 
--- yeah, we're polluting the _G namespace like you've never seen before.
+-- Yeah, we're polluting the _G namespace like you've never seen before. Make
+-- sure these `require`s are listed in the order that they depend on each other.
 require "image_manager"
 require "state"
 require "play"
-
--- we have to make sure to import subclasses after the original class
 require "entity"
 require "desmond"
 
