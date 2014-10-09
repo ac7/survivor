@@ -6,10 +6,15 @@ function testDesmondUpdate()
 	end
 
 	assert(d.speed == 0)
-	d:update(1, isDown)
+	d:update(2, isDown)
 	assert(d.speed == desmondSpeed, "Speed was not set after call to update")
 
-	assert(d.y == 1600 - (d.speed / math.sqrt(2)))
-	assert(d.x == 800 + (d.speed / math.sqrt(2)))
+	local movementPerSecond = (d.speed / math.sqrt(2))
+	assertApprox(800 + movementPerSecond * 2, d.x)
+	assertApprox(1600 - movementPerSecond * 2, d.y)
+
+	d:update(3, isDown)
+	assertApprox(800 + movementPerSecond * 5, d.x)
+	assertApprox(1600 - movementPerSecond * 5, d.y)
 end
 
