@@ -8,8 +8,14 @@ end
 function testEntityGetScreenPosition()
 	local e = Entity({cameraX=2, cameraY=-4}, {}, 1, 0)
 	local drawX, drawY = e:getScreenPosition()
-	assert(drawX == -1)
-	assert(drawY == 4)
+	assertEq(-1, drawX)
+	assertEq(4, drawY)
+	e.originX = 2
+	e.originY = 1.5
+
+	local drawX, drawY = e:getScreenPosition()
+	assertEq(-3, drawX)
+	assertEq(2.5, drawY)
 end
 
 function testEntityUpdate()

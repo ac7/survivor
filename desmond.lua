@@ -2,12 +2,6 @@
 Desmond = Entity:extends{}
 desmondSpeed = 200
 
-function Desmond:draw()
-	love.graphics.setColor(255, 255, 255)
-	local drawX, drawY = self:getScreenPosition()
-	love.graphics.rectangle("fill", drawX, drawY, 50, 50)
-end
-
 -- The isDown parameter defaults to love.keyboard.isDown but it can be swapped
 -- out for unit tests.
 function Desmond:update(dt, isDown)
@@ -23,8 +17,19 @@ function Desmond:update(dt, isDown)
 		self.speed = desmondSpeed
 	else self.speed = 0; end
 
+	self.originX = 25
+	self.originY = 25
+
 	self.angle = math.atan2(movX, movY)
 	self.super.update(self, dt)
+end
+
+function Desmond:draw()
+	love.graphics.setColor(255, 255, 255)
+	local drawX, drawY = self:getScreenPosition()
+	love.graphics.rectangle("fill", drawX, drawY, 50, 50)
+	local mouseX, mouseY = love.mouse.getPosition()
+	love.graphics.line(self.x, self.y, mouseX, mouseY)
 end
 
 function Desmond:keypressed(key, unicode) end

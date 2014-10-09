@@ -41,15 +41,16 @@ function Entity:update(dt)
 	self.y = self.y + math.cos(self.angle) * self.speed * dt
 end
 
--- getScreenPosition() returns (x, y) coordinates representing where the entity
--- should be drawn on the screen. Useful for overriding `draw()`
+-- getScreenPosition() returns (x, y) coordinates representing the center of
+-- where the entity should be drawn on the screen. Useful for overriding
+-- `draw()`
 function Entity:getScreenPosition()
-	return (self.x - self.container.cameraX),
-	       (self.y - self.container.cameraY)
+	return (self.x - self.container.cameraX - self.originX),
+	       (self.y - self.container.cameraY - self.originY)
 end
 
 function Entity:draw()
 	local drawX, drawY = self:getScreenPosition()
-	love.graphics.draw(self.img, drawX, drawY, 1, 1, self.originX, self.originY)
+	love.graphics.draw(self.img, drawX, drawY)
 end
 
