@@ -16,6 +16,7 @@ class = require "30log"
 
 -- Yeah, we're polluting the _G namespace like you've never seen before. Make
 -- sure these `require`s are listed in the order that they depend on each other.
+require "util"
 require "image_manager"
 require "state"
 require "play"
