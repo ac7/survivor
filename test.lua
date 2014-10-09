@@ -20,6 +20,16 @@ function assertApprox(expected, recieved)
 	end
 end
 
+-- assertIs checks that the object's type is equal to the typeName (which should
+-- be a string). Why would you use this over `assert(type(object) == typeName)`?
+-- Because this function prints helpful information.
+function assertIs(typeName, object)
+	if type(object) ~= typeName then
+		error(("Expected an object of type %s, recieved %s (of type %s)")
+			:format(typeName, object, type(object)), 2)
+	end
+end
+
 -- runTests goes through every function in the global namespace and runs the
 -- functions that begin with `test`. The general idea was adopted from the test
 -- framework in Golang (golang.org). These functions can use `assert` because any

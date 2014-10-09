@@ -27,12 +27,12 @@ function Entity:__init(container, img, x, y)
 
 	self.x = x or 0
 	self.y = y or 0
-	assert(type(self.x) == "number")
-	assert(type(self.y) == "number")
+	assertIs("number", self.x)
+	assertIs("number", self.y)
 
-	assert(type(container) == "table")
-	assert(type(container.cameraX) == "number")
-	assert(type(container.cameraY) == "number")
+	assertIs("table", container)
+	assertIs("number", container.cameraX)
+	assertIs("number", container.cameraY)
 	self.container = container
 end
 

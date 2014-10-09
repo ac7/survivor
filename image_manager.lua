@@ -2,7 +2,7 @@
 local images = {}
 
 function image(name)
-	assert(type(name) == "string")
+	assertIs("string", name)
 	if images[name] then
 		return images[name]
 	else
@@ -12,7 +12,7 @@ function image(name)
 end
 
 function imageRelease(name)
-	assert(type(name) == "string")
+	assertIs("string", name)
 	assert(images[name] ~= nil)
 	images[name] = nil
 end
