@@ -8,16 +8,12 @@ function love.load()
 end
 
 function love.update(dt)
-	assert(state)
 	for _, v in pairs(state.entities) do
-		-- pointless to `assert` that v has an `update` method because
-		-- the interpreter will crash anyway when we call it
 		v:update(dt)
 	end
 end
 
 function love.draw()
-	assert(state)
 	for _, v in pairs(state.entities) do
 		v:draw()
 	end
