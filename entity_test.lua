@@ -10,9 +10,9 @@ function testEntityGetScreenPosition()
 	local drawX, drawY = e:getScreenPosition()
 	assertEq(-1, drawX)
 	assertEq(4, drawY)
+
 	e.originX = 2
 	e.originY = 1.5
-
 	local drawX, drawY = e:getScreenPosition()
 	assertEq(-3, drawX)
 	assertEq(2.5, drawY)
@@ -20,18 +20,28 @@ end
 
 function testEntityUpdate()
 	local e = Entity({cameraX=2, cameraY=-4}, {}, 1, 0)
-	assert(type(e.update) == "function", "Entity doesn't have an update method")
+	assertIs("function", e.update, "Entity doesn't have an update method")
 
 	e.angle = 0
 	e.speed = 4
 
 	e:update(0.5)
-	assert(e.y == 2, "Entity didn't move as expected.")
+	assertEq(1, e.x)
+	assertEq(0, e.y)
+
+	e.moving = true
+	e:update(0.5)
+	assertEq(1, e.x)
+	assertEq(2, e.y)
+
 	e.angle = math.pi / 2
 	e:update(0.5)
-	assert(e.x == 3, "Entity didn't move as expected.")
+	assertEq(3, e.x)
+	assertEq(2, e.y)
+
 	e.angle = -math.pi / 2
 	e:update(0.5)
-	assert(e.x == 1, "Entity didn't move as expected.")
+	assertEq(1, e.x)
+	assertEq(2, e.y)
 end
 

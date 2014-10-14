@@ -2,11 +2,13 @@
 -- Entity is the baseclass of everything that can appear on the screen.
 Entity = class{
 	-- When update is called, `x` and `y` will be moved in the direction of
-	-- `angle` at `speed`.
+	-- `angle` at `speed` (iff `moving` is true).
 	x = 0,
 	y = 0,
+
+	moving = false,
 	angle = 0, -- All angles are in radians.
-	speed = 0, -- Speed is measured in pixels-per-second.
+	speed = 128, -- Speed is measured in pixels-per-second.
 
 	-- Image-related variables. The origin- variables can be set to draw the
 	-- `img` centered on the x and y coordinates.
@@ -37,6 +39,8 @@ function Entity:__init(container, img, x, y)
 end
 
 function Entity:update(dt)
+	if not self.moving then return; end
+
 	self.x = self.x + math.sin(self.angle) * self.speed * dt
 	self.y = self.y + math.cos(self.angle) * self.speed * dt
 end

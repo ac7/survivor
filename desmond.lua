@@ -1,6 +1,13 @@
 
-Desmond = Entity:extends{}
-desmondSpeed = 200
+Desmond = Entity:extends{
+	originX = 25,
+	originY = 25,
+	speed = 512,
+}
+
+function Desmond:__init(container, img, x, y)
+	self.super.__init(self, container, img, x, y)
+end
 
 -- The isDown parameter defaults to love.keyboard.isDown but it can be swapped
 -- out for unit tests.
@@ -13,13 +20,7 @@ function Desmond:update(dt, isDown)
 	if isDown("s") then movY = 1; end
 	if isDown("d") then movX = 1; end
 
-	if movX ~= 0 or movY ~= 0 then
-		self.speed = desmondSpeed
-	else self.speed = 0; end
-
-	self.originX = 25
-	self.originY = 25
-
+	self.moving = movX ~= 0 or movY ~= 0
 	self.angle = math.atan2(movX, movY)
 	self.super.update(self, dt)
 end
