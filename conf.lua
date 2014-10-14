@@ -1,10 +1,12 @@
 
+screenWidth = 960
+screenHeight = 540
+
 function love.conf(t)
 	t.version = "0.9.1"
 
 	t.window.title = "survivor"
-	t.window.width = 960
-	t.window.height = 540
+	t.window.width, t.window.height = screenWidth, screenHeight
 	t.window.fullscreentype = "desktop"
 
 	t.modules.physics = false
