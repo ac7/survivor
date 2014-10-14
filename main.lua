@@ -2,7 +2,8 @@
 function love.load()
 	require "imports"
 
-	desmond = Desmond:new(play, {}, 32, 72)
+	local play = Play:new()
+	desmond = Desmond:new({})
 	table.insert(play.entities, desmond)
 	setState(play)
 end
