@@ -1,6 +1,6 @@
 
 function testDesmondUpdate()
-	local d = Desmond({cameraX=0, cameraY=0}, {}, 800, 1600)
+	local d = Desmond({}, 800, 1600)
 	local isDown = function(key)
 		return key == "w" or key == "d"
 	end

@@ -27,7 +27,9 @@ end
 
 function Desmond:draw()
 	love.graphics.setColor(255, 255, 255)
-	local drawX, drawY = self:getScreenPosition()
+
+	local drawX, drawY = self:getScreenPosition(
+		state.cameraX, state.cameraY)
 	love.graphics.rectangle("fill", drawX, drawY, 50, 50)
 	local mouseX, mouseY = love.mouse.getPosition()
 	love.graphics.line(self.x, self.y, mouseX, mouseY)

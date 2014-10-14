@@ -15,15 +15,11 @@ Entity = class{
 	img = nil,
 	originX = 0,
 	originY = 0,
-
-	-- Container should be a `state` (for instance, `play`). Used for camera
-	-- offset and information about other entities in the state.
-	container = nil,
 }
 
--- As stated in the class definition above, `container` should be a state. X and
--- Y are the inital coordinates of the Entity and are optional parameters.
-function Entity:__init(container, img, x, y)
+-- `x` and `y` are the inital coordinates of the Entity and are optional
+-- parameters.
+function Entity:__init(img, x, y)
 	assert(img)
 	self.img = img
 
@@ -31,11 +27,6 @@ function Entity:__init(container, img, x, y)
 	self.y = y or 0
 	assertIs("number", self.x)
 	assertIs("number", self.y)
-
-	assertIs("table", container)
-	assertIs("number", container.cameraX)
-	assertIs("number", container.cameraY)
-	self.container = container
 end
 
 function Entity:update(dt)
@@ -47,14 +38,16 @@ end
 
 -- getScreenPosition() returns (x, y) coordinates representing the center of
 -- where the entity should be drawn on the screen. Useful for overriding
--- `draw()`
-function Entity:getScreenPosition()
-	return (self.x - self.container.cameraX - self.originX),
-	       (self.y - self.container.cameraY - self.originY)
+-- `draw()`.
+function Entity:getScreenPosition(cameraX, cameraY)
+	return (self.x - cameraX - self.originX),
+	       (self.y - cameraY - self.originY)
 end
 
+-- This method does access the global `state` variable. Justification: this
+-- method is only called when the entity is drawn.
 function Entity:draw()
-	local drawX, drawY = self:getScreenPosition()
+	local drawX, drawY = self:getScreenPosition(state.cameraX, state.cameraY)
 	love.graphics.draw(self.img, drawX, drawY)
 end
 
