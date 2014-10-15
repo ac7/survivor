@@ -31,8 +31,10 @@ function Desmond:draw()
 	local drawX, drawY = self:getScreenPosition(
 		state.cameraX, state.cameraY)
 	love.graphics.rectangle("fill", drawX, drawY, 50, 50)
+
 	local mouseX, mouseY = love.mouse.getPosition()
-	love.graphics.line(self.x, self.y, mouseX, mouseY)
+	love.graphics.line(drawX+self.originX, drawY+self.originY,
+		mouseX, mouseY)
 end
 
 function Desmond:keypressed(key, unicode) end

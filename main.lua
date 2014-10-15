@@ -5,6 +5,7 @@ function love.load()
 	local play = Play:new()
 	desmond = Desmond:new({})
 	table.insert(play.entities, desmond)
+	play:track(desmond)
 	setState(play)
 end
 
