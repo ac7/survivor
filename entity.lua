@@ -1,10 +1,8 @@
 
 -- Entity is the baseclass of everything that can appear on the screen.
 Entity = class{
-	-- When update is called, `x` and `y` will be moved in the direction of
-	-- `angle` at `speed` (iff `moving` is true).
-	x = 0,
-	y = 0,
+	-- These are the top-left coordinates of the entity.
+	x = 0, y = 0,
 
 	moving = false,
 	angle = 0, -- All angles are in radians.
@@ -29,6 +27,8 @@ function Entity:__init(img, x, y)
 	assertIs("number", self.y)
 end
 
+-- When update is called, `x` and `y` will be moved in the direction of `angle`
+-- at `speed` (iff `moving` is true).
 function Entity:update(dt)
 	if not self.moving then return; end
 
