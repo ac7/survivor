@@ -8,9 +8,14 @@ State = class{
 function State:setup() end
 
 function State:update(dt)
-	assertIs("table", self.entities)
 	for _, v in pairs(self.entities) do
 		v:update(dt)
+	end
+end
+
+function State:draw()
+	for _, v in pairs(self.entities) do
+		v:draw()
 	end
 end
 

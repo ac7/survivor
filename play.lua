@@ -16,7 +16,7 @@ function Play:track(trackTarget)
 end
 
 function Play:update(dt)
-	assertIs("number", dt)
+	self.super.update(self, dt)
 	if self.trackTarget then
 		self.cameraX = self.trackTarget.x - screenWidth/2
 		self.cameraY = self.trackTarget.y - screenHeight/2

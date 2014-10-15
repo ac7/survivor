@@ -9,15 +9,11 @@ function love.load()
 end
 
 function love.update(dt)
-	for _, v in pairs(state.entities) do
-		v:update(dt)
-	end
+	state:update(dt)
 end
 
 function love.draw()
-	for _, v in pairs(state.entities) do
-		v:draw()
-	end
+	state:draw(dt)
 end
 
 function love.keypressed(key, unicode)
