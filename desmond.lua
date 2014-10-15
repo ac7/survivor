@@ -5,8 +5,8 @@ Desmond = Entity:extends{
 	speed = 512,
 }
 
-function Desmond:__init(container, img, x, y)
-	self.super.__init(self, container, img, x, y)
+function Desmond:__init(x, y)
+	self.super.__init(self, x, y)
 end
 
 -- The isDown parameter defaults to love.keyboard.isDown but it can be swapped

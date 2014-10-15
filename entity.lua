@@ -9,18 +9,14 @@ Entity = class{
 	speed = 128, -- Speed is measured in pixels-per-second.
 
 	-- Image-related variables. The origin- variables can be set to draw the
-	-- `img` centered on the x and y coordinates.
-	img = nil,
+	-- Entity centered on the x and y coordinates.
 	originX = 0,
 	originY = 0,
 }
 
 -- `x` and `y` are the inital coordinates of the Entity and are optional
 -- parameters.
-function Entity:__init(img, x, y)
-	assert(img)
-	self.img = img
-
+function Entity:__init(x, y)
 	self.x = x or 0
 	self.y = y or 0
 	assertIs("number", self.x)
@@ -44,10 +40,6 @@ function Entity:getScreenPosition(cameraX, cameraY)
 	       (self.y - cameraY - self.originY)
 end
 
--- This method does access the global `state` variable. Justification: this
--- method is only called when the entity is drawn.
-function Entity:draw()
-	local drawX, drawY = self:getScreenPosition(state.cameraX, state.cameraY)
-	love.graphics.draw(self.img, drawX, drawY)
-end
+-- Default implementation is a no-op
+function Entity:draw() end
 

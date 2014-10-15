@@ -1,12 +1,12 @@
 
 function testEntityDefaultXY()
-	local e = Entity({})
+	local e = Entity()
 	assert(e.x == 0)
 	assert(e.y == 0)
 end
 
 function testEntityGetScreenPosition()
-	local e = Entity({}, 1, 0)
+	local e = Entity(1, 0)
 	local drawX, drawY = e:getScreenPosition(2, -4)
 	assertEq(-1, drawX)
 	assertEq(4, drawY)
@@ -21,7 +21,7 @@ end
 function testEntityUpdate()
 	state = {cameraX=2, cameraY=-4}
 
-	local e = Entity({}, 1, 0)
+	local e = Entity(1, 0)
 	assertIs("function", e.update, "Entity doesn't have an update method")
 
 	e.angle = 0
