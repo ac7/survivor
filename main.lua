@@ -25,10 +25,7 @@ function love.keypressed(key, unicode)
 end
 
 function love.keyreleased(key, unicode)
-	if key == "return" then
-		-- toggle fullscreen
-		love.window.setFullscreen(not love.window.getFullscreen())
-	elseif key == "escape" then
+	if key == "escape" then
 		love.event.push("quit")
 	end
 	desmond:keyreleased(key, unicode)
