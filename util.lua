@@ -11,7 +11,7 @@ function distance(x1, y1, x2, y2)
 	return math.sqrt((x1 - x2)^2 + (y1 - y2)^2)
 end
 
-function testMouseLine()
+function testDistance()
 	assertEq(0, distance(0, 0, 0, 0))
 	assertEq(1, distance(0, 0, 1, 0))
 	assertEq(0, distance(1, 0, 1, 0))
