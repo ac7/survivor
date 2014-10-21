@@ -4,10 +4,11 @@ Desmond = Entity:extends{
 	originY = 25,
 	speed = 512,
 	swing = 0,
+
+	swingDuration = 0.3,
+	swingRadius = 80,
+	swingDamage = 25,
 }
-local swingDuration = 0.3
-local swingRadius = 80
-local swingDamage = 25
 
 function Desmond:__init(x, y)
 	self.super.__init(self, x, y)
@@ -37,10 +38,10 @@ function Desmond:draw()
 		state.cameraX, state.cameraY)
 
 	if self.swing > 0 then
-		local proportion = self.swing / swingDuration
+		local proportion = self.swing / self.swingDuration
 		love.graphics.setColor(255, 0, 0, 255 * (1-proportion))
 		love.graphics.circle("fill", drawX+self.originX,
-			drawY+self.originY, swingRadius * proportion)
+			drawY+self.originY, self.swingRadius * proportion)
 	end
 
 	love.graphics.setColor(255, 255, 255)
@@ -55,21 +56,20 @@ function Desmond:keypressed(key, unicode) end
 function Desmond:keyreleased(key, unicode) end
 
 function Desmond:mousepressed(mx, my, button)
-	if button == "l" then
-		if self.swing > 0 then
-			return
-		end
+	if button ~= "l" then return; end
 
-		self.swing = swingDuration
+	-- if we are currently swinging, duck out
+	if self.swing > 0 then return; end
 
-		for _, entity in pairs(state.entities) do
-			if distance(self.x, self.y,
-				entity.x, entity.y) < swingRadius then
+	-- begin a new swing
+	self.swing = self.swingDuration
 
-				if entity.takeDamage then
-					entity:takeDamage(self, swingDamage)
-				end
-			end
+	-- loop through entities and deal damage to those that are affected
+	for _, entity in pairs(state.entities) do
+		if entity.takeDamage and distance(self.x, self.y,
+			entity.x, entity.y) < self.swingRadius then
+
+			entity:takeDamage(self, self.swingDamage)
 		end
 	end
 end
