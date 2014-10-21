@@ -27,7 +27,8 @@ function State:remove(entity)
 			return
 		end
 	end
-	error("Entity " .. entity .. " was not found in state but it was passed to state:remove()")
+	error("Entity " .. entity ..
+		" was not found in state but it was passed to state:remove()")
 end
 
 function setState(newState)
