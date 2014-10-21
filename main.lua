@@ -6,8 +6,8 @@ function love.load()
 	desmond = Desmond:new()
 	table.insert(play.entities, desmond)
 	table.insert(play.entities, Square(128, 0, {255, 0, 0}))
-	table.insert(play.entities, Square(256, 0, {255, 0, 0}))
-	table.insert(play.entities, Square(512, 0, {255, 0, 0}))
+	table.insert(play.entities, Square(-256, 0, {255, 0, 0}))
+	table.insert(play.entities, Square(-96, 128, {255, 0, 0}))
 	play:track(desmond)
 	setState(play)
 end
@@ -29,5 +29,9 @@ function love.keyreleased(key, unicode)
 		love.event.push("quit")
 	end
 	desmond:keyreleased(key, unicode)
+end
+
+function love.mousepressed(mx, my, button)
+	desmond:mousepressed(mx, my, button)
 end
 
