@@ -21,7 +21,7 @@ require "image_manager"
 require "state"
 require "play"
 require "entity"
-require "rect"
+require "square"
 require "desmond"
 
 if enableTesting then
