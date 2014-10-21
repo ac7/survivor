@@ -17,3 +17,39 @@ function testDesmondUpdate()
 	assertApprox(1600 - movementPerSecond * 5, d.y)
 end
 
+function testDesmondMousepressed()
+	-- Set up a mock state with two entities. The first entity is within
+	-- range of a swing, the second is out of range.
+	local correctDamageTaken = false
+	local incorrectDamageTaken = false
+	local mockState = {
+		setup = function() end,
+		entities = {{
+			takeDamage = function() correctDamageTaken = true; end,
+			x = 10,
+			y = 10,
+		},
+		{
+			takeDamage = function() incorrectDamageTaken = true; end,
+			x = -150,
+			y = -150,
+		}},
+	}
+	setState(mockState)
+
+	local d = Desmond(11, 9)
+
+	-- assert that the right mouse button does nothing
+	d:mousepressed(0, 0, "r")
+	assertEq(0, d.swing)
+	assertEq(false, correctDamageTaken)
+	assertEq(false, incorrectDamageTaken)
+
+	-- assert that the left mouse button causes a swing to begin, but that
+	-- it only affects the correct entity
+	d:mousepressed(0, 0, "l")
+	assertEq(Desmond.swingDuration, d.swing)
+	assertEq(true, correctDamageTaken)
+	assertEq(false, incorrectDamageTaken)
+end
+
