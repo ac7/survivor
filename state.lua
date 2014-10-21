@@ -19,6 +19,17 @@ function State:draw()
 	end
 end
 
+function State:remove(entity)
+	assertIs("table", entity)
+	for i, v in pairs(self.entities) do
+		if v == entity then
+			table.remove(self.entities, i)
+			return
+		end
+	end
+	error("Entity " .. entity .. " was not found in state but it was passed to state:remove()")
+end
+
 function setState(newState)
 	-- don't set state to newState until `setup()` has been called in case
 	-- newState needs to reference the current state for some reason

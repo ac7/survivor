@@ -25,3 +25,8 @@ function Square:draw()
 	love.graphics.rectangle("fill", drawX, drawY, self.size, self.size)
 end
 
+function Square:takeDamage(dealer, amount)
+	assertIs("number", amount)
+	state:remove(self)
+end
+
