@@ -32,7 +32,7 @@ function Entity:update(dt)
 	self.y = self.y + math.cos(self.angle) * self.speed * dt
 end
 
--- getScreenPosition() returns (x, y) coordinates representing the center of
+-- getScreenPosition() returns (x, y) coordinates representing the top-left of
 -- where the entity should be drawn on the screen. Useful for overriding
 -- `draw()`.
 function Entity:getScreenPosition(cameraX, cameraY)

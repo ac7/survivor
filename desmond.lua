@@ -5,8 +5,8 @@ Desmond = Entity:extends{
 	speed = 512,
 	swing = 0,
 
-	swingDuration = 0.3,
-	swingRadius = 80,
+	swingDuration = 0.2,
+	swingRadius = 128,
 	swingDamage = 25,
 }
 
@@ -39,17 +39,30 @@ function Desmond:draw()
 
 	if self.swing > 0 then
 		local proportion = self.swing / self.swingDuration
-		love.graphics.setColor(255, 0, 0, 255 * (1-proportion))
+
+		-- draw a partially transparent filled circle in the swing
+		-- radius
+		love.graphics.setColor(255, 0, 255, 255 * (1-proportion))
 		love.graphics.circle("fill", drawX+self.originX,
+			drawY+self.originY, self.swingRadius * proportion)
+
+		-- draw a white border around the edge of the circle
+		love.graphics.setColor(255, 255, 255)
+		love.graphics.circle("line", drawX+self.originX,
 			drawY+self.originY, self.swingRadius * proportion)
 	end
 
+	-- draw a line from `self` to the mouse cursor
 	love.graphics.setColor(255, 255, 255)
-	love.graphics.rectangle("fill", drawX, drawY, 50, 50)
-
 	local mouseX, mouseY = love.mouse.getPosition()
 	love.graphics.line(drawX+self.originX, drawY+self.originY,
 		mouseX, mouseY)
+
+	-- draw a black square with a white border to represent self
+	love.graphics.setColor(0, 0, 0)
+	love.graphics.rectangle("fill", drawX, drawY, 50, 50)
+	love.graphics.setColor(255, 255, 255)
+	love.graphics.rectangle("line", drawX, drawY, 50, 50)
 end
 
 function Desmond:keypressed(key, unicode) end
