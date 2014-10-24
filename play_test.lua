@@ -23,9 +23,5 @@ function testPlayTrack()
 	play:update(0xdeadbeef)
 	assertEq(play.cameraX, 64 - screenWidth/2)
 	assertEq(play.cameraY, 32 - screenHeight/2)
-
-	-- make sure to unset the track object
-	play:track(nil)
-	play.cameraX, play.cameraY = 0, 0
 end
 
