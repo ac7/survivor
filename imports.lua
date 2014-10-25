@@ -21,11 +21,13 @@ require "image_manager"
 require "state"
 require "play"
 require "entity"
+require "comrade"
 require "square"
 require "desmond"
 
 if enableTesting then
 	require "entity_test"
+	require "comrade_test"
 	require "desmond_test"
 	require "play_test"
 	require "state_test"
