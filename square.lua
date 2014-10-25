@@ -1,6 +1,7 @@
 
 Square = Entity:extends{}
 
+-- Square is just a temporary block for use in testing.
 function Square:__init(x, y, color)
 	self.super.__init(self, x, y)
 
