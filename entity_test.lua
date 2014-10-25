@@ -19,8 +19,7 @@ function testEntityGetScreenPosition()
 end
 
 function testEntityUpdate()
-	state = {cameraX=2, cameraY=-4}
-
+	local state = {cameraX=2, cameraY=-4}
 	local e = Entity(1, 0)
 	assertIs("function", e.update, "Entity doesn't have an update method")
 
