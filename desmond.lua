@@ -10,10 +10,6 @@ Desmond = Entity:extends{
 	swingDamage = 25,
 }
 
-function Desmond:__init(x, y)
-	self.super.__init(self, x, y)
-end
-
 -- The isDown parameter defaults to love.keyboard.isDown but it can be swapped
 -- out for unit tests.
 function Desmond:update(dt, isDown)
