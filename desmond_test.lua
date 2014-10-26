@@ -39,8 +39,8 @@ function testDesmondMousepressed()
 
 	local d = Desmond(11, 9)
 
-	-- assert that the right mouse button does nothing
-	d:mousepressed(0, 0, "r")
+	-- assert that the middle mouse button does nothing
+	d:mousepressed(0, 0, "m")
 	assertEq(0, d.swing)
 	assertEq(false, correctDamageTaken)
 	assertEq(false, incorrectDamageTaken)
