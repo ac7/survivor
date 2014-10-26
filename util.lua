@@ -56,3 +56,58 @@ function testClosest()
 	assertEq(nil, closest(0, 0, {}))
 end
 
+-- callMethod is a specialized util function. Assume you have an object that
+-- looks like this:
+--
+--	myObj = {
+--		members = {
+--      		member1,
+--      		member2,
+--      		member3,
+--		},
+--	}
+--
+-- and you know that each `member` has a method `doSomething()`. Instead of
+-- writing out a function like this:
+--
+--	function myObj:doSomething(p1, p2)
+--		for _, m in pairs(self.members) do
+--			m:doSomething(p1, p2)
+--		end
+--	end
+--
+-- You can simply do
+--
+-- 	myObj.doSomething = callMethod("dosomething", "members")
+--
+function callMethod(funcName, memberName)
+	return function(self, ...)
+		for _, v in pairs(self[memberName]) do
+			v[funcName](v, ...)
+		end
+	end
+end
+
+function testCallMethod()
+	local count = 0
+
+	local mockItem = class()
+	function mockItem:trigger(number)
+		count = count + number
+	end
+
+	local mockObj = {
+		items = {
+			mockItem(),
+			mockItem(),
+			mockItem(),
+		}
+	}
+	assertEq(0, count)
+	mockObj.f = callMethod("trigger", "items")
+	assertIs("function", mockObj.f)
+	assertEq(0, count)
+	mockObj:f(3)
+	assertEq(9, count)
+end
+

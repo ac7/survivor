@@ -7,17 +7,8 @@ State = class{
 
 function State:setup() end
 
-function State:update(dt)
-	for _, v in pairs(self.entities) do
-		v:update(dt)
-	end
-end
-
-function State:draw()
-	for _, v in pairs(self.entities) do
-		v:draw()
-	end
-end
+State.draw = callMethod("draw", "entities")
+State.update = callMethod("update", "entities")
 
 function State:remove(entity)
 	assertIs("table", entity)
