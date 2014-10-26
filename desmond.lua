@@ -2,7 +2,7 @@
 Desmond = Entity:extends{
 	originX = 25,
 	originY = 25,
-	speed = 512,
+	speed = 492,
 	swing = 0,
 
 	swingDuration = 0.2,

@@ -1,6 +1,6 @@
 
-screenWidth = 960
-screenHeight = 540
+screenWidth = 2048
+screenHeight = 1092
 
 function love.conf(t)
 	t.version = "0.9.1"
