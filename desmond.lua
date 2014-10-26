@@ -33,8 +33,6 @@ function Desmond:update(dt, isDown)
 end
 
 function Desmond:draw()
-	love.graphics.setColor(255, 255, 255)
-
 	local drawX, drawY = self:getScreenPosition(
 		state.cameraX, state.cameraY)
 
