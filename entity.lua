@@ -1,7 +1,8 @@
 
 -- Entity is the baseclass of everything that can appear on the screen.
 Entity = class{
-	-- These are the top-left coordinates of the entity.
+	-- These are the center coordinates of the entity (depending on the
+	-- value of the originX and originY members)
 	x = 0, y = 0,
 
 	moving = false,
