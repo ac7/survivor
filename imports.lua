@@ -20,17 +20,20 @@ require "util"
 require "image_manager"
 require "state"
 require "play"
+require "squad"
 require "entity"
 require "comrade"
 require "square"
 require "desmond"
 
 if enableTesting then
-	require "entity_test"
 	require "comrade_test"
 	require "desmond_test"
+	require "entity_test"
 	require "play_test"
+	require "squad_test"
 	require "state_test"
+
 	require "test"
 	runTests()
 end
