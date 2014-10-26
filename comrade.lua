@@ -27,3 +27,9 @@ function Comrade:update(dt)
 	self.super.update(self, dt)
 end
 
+function Comrade:draw()
+	local drawX, drawY = self:getScreenPosition(state.cameraX, state.cameraY)
+	love.graphics.setColor(0, 255, 0)
+	love.graphics.circle("fill", drawX, drawY, 32)
+end
+

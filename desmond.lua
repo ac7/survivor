@@ -10,6 +10,11 @@ Desmond = Entity:extends{
 	swingDamage = 25,
 }
 
+function Desmond:__init(x, y)
+	self.super.__init(self, x, y)
+	self.comrade = Comrade(self.x, self.y + 32)
+end
+
 -- The isDown parameter defaults to love.keyboard.isDown but it can be swapped
 -- out for unit tests.
 function Desmond:update(dt, isDown)
@@ -65,21 +70,24 @@ function Desmond:keypressed(key, unicode) end
 function Desmond:keyreleased(key, unicode) end
 
 function Desmond:mousepressed(mx, my, button)
-	if button ~= "l" then return; end
+	if button == "l" then
+		-- if we are currently swinging, duck out
+		if self.swing > 0 then return; end
 
-	-- if we are currently swinging, duck out
-	if self.swing > 0 then return; end
+		-- begin a new swing
+		self.swing = self.swingDuration
 
-	-- begin a new swing
-	self.swing = self.swingDuration
+		-- loop through entities and deal damage to those that are affected
+		for _, entity in pairs(state.entities) do
+			if entity.takeDamage and distance(self.x, self.y,
+				entity.x, entity.y) < self.swingRadius then
 
-	-- loop through entities and deal damage to those that are affected
-	for _, entity in pairs(state.entities) do
-		if entity.takeDamage and distance(self.x, self.y,
-			entity.x, entity.y) < self.swingRadius then
-
-			entity:takeDamage(self, self.swingDamage)
+				entity:takeDamage(self, self.swingDamage)
+			end
 		end
+
+	elseif button == "r" then
+		self.comrade:orderTo(mx + state.cameraX, my + state.cameraY)
 	end
 end
 
