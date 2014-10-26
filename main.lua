@@ -8,6 +8,7 @@ function love.load()
 	table.insert(play.entities, Square(128, 0, {255, 0, 0}))
 	table.insert(play.entities, Square(-256, 0, {255, 0, 0}))
 	table.insert(play.entities, Square(-96, 128, {255, 0, 0}))
+	table.insert(play.entities, Square(96, 128, {255, 0, 0}))
 	play:track(desmond)
 	setState(play)
 end

@@ -23,3 +23,10 @@ function Play:update(dt)
 	end
 end
 
+function Play:draw()
+	love.graphics.setColor(255, 255, 255)
+	love.graphics.rectangle("line", -400-self.cameraX, -400-self.cameraY,
+		800, 600)
+	self.super.draw(self)
+end
+
