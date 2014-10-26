@@ -21,3 +21,38 @@ function testDistance()
 	assertApprox(math.sqrt(2) * 8, distance(0, 8, 8, 0))
 end
 
+-- closest returns the object in the list that has an `x` and `y` closest to the
+-- list. If the list is empty, closest returns nil.
+function closest(x, y, list)
+	assertIs("number", x)
+	assertIs("number", y)
+	assertIs("table", list)
+
+	local closestMember
+	local closestDistance
+
+	for _, member in pairs(list) do
+		local dist = distance(member.x, member.y, x, y)
+		if closestMember == nil or dist < closestDistance then
+			closestMember = member
+			closestDistance = dist
+		end
+	end
+
+	return closestMember
+end
+
+function testClosest()
+	local expected = {x = 14, y = 8}
+	local list = {
+		{x = 10, y = 10},
+		{x = -7, y = -8},
+		expected,
+		{x = 0, y = 0},
+	}
+	local result = closest(13, 9, list)
+	assertEq(expected, result)
+
+	assertEq(nil, closest(0, 0, {}))
+end
+
