@@ -23,7 +23,7 @@ function State:remove(entity)
 	assertIs("table", entity)
 	for i, v in pairs(self.entities) do
 		if v == entity then
-			table.remove(self.entities, i)
+			self.entities[i] = nil
 			return
 		end
 	end
