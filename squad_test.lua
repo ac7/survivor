@@ -20,6 +20,7 @@ function testSquadOrderTo()
 	local squad = Squad({})
 	squad:addMember(unitOne)
 	squad:addMember(unitTwo)
+	assertEq(2, #squad.members)
 
 	squad:orderTo(0, 0)
 	assert(orderedCorrectly == true,
