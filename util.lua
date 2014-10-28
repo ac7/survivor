@@ -56,6 +56,7 @@ function testClosest()
 	assertEq(nil, closest(0, 0, {}))
 end
 
+--
 -- callMethod is a specialized util function. Assume you have an object that
 -- looks like this:
 --
@@ -70,7 +71,7 @@ end
 -- and you know that each `member` has a method `doSomething()`. Instead of
 -- writing out a function like this:
 --
---	function myObj:doSomething(p1, p2)
+--	function myObj:doSomethingToAll(p1, p2)
 --		for _, m in pairs(self.members) do
 --			m:doSomething(p1, p2)
 --		end
@@ -78,7 +79,7 @@ end
 --
 -- You can simply do
 --
--- 	myObj.doSomething = callMethod("dosomething", "members")
+-- 	myObj.doSomethingToAll = callMethod("dosomething", "members")
 --
 function callMethod(funcName, memberName)
 	return function(self, ...)
