@@ -12,7 +12,10 @@ Desmond = Entity:extends{
 
 function Desmond:__init(x, y)
 	self.super.__init(self, x, y)
-	self.comrade = Comrade(self.x, self.y + 32)
+	self.squad = Squad(self)
+
+	self.squad:addMember(Comrade(self.x, self.y - 128))
+	self.squad:addMember(Comrade(self.x - 128, self.y + 128))
 end
 
 -- The isDown parameter defaults to love.keyboard.isDown but it can be swapped
@@ -75,7 +78,8 @@ function Desmond:mousepressed(mx, my, button)
 		-- begin a new swing
 		self.swing = self.swingDuration
 
-		-- loop through entities and deal damage to those that are affected
+		-- loop through entities and deal damage to those that are
+		-- affected
 		for _, entity in pairs(state.entities) do
 			if entity.takeDamage and distance(self.x, self.y,
 				entity.x, entity.y) < self.swingRadius then
@@ -85,7 +89,7 @@ function Desmond:mousepressed(mx, my, button)
 		end
 
 	elseif button == "r" then
-		self.comrade:orderTo(mx + state.cameraX, my + state.cameraY)
+		self.squad:orderTo(mx + state.cameraX, my + state.cameraY)
 	end
 end
 
